@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROYALFIT</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Menú lateral -->
+  <button type="button" id="abrir-menu" class="boton-menu" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-lateral">☰</button>
+  <a href="#carrito" class="boton-carrito">🛒 <span id="contador-carrito">0</span></a>
+  <div id="fondo-menu" class="fondo-menu" hidden></div>
+
+  <aside id="menu-lateral" class="menu-lateral" aria-hidden="true">
+    <button type="button" id="cerrar-menu" class="cerrar-menu" aria-label="Cerrar menú">×</button>
+    <div class="titulo-menu">
+      <img src="logo.png" alt="Logo de ROYALFIT" class="logo-menu">
+      <span>ROYALFIT</span>
+    </div>
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#productos" data-categoria="todas">Todos los productos</a>
+      <a href="#productos" data-categoria="remeras">REMERAS</a>
+      <a href="#productos" data-categoria="pantalones">Pantalones</a>
+      <a href="#productos" data-categoria="calzados">Calzados</a>
+      <a href="#carrito">🛒 Carrito (<span class="contador-carrito-lateral">0</span>)</a>
+    </nav>
+  </aside>
+
+  <!-- Portada -->
+  <header id="inicio" class="portada">
+    <div class="portada-texto">
+      <h1>¡NUEVA<br>COLECCIÓN!</h1>
+      <a href="#productos" class="boton-portada">Ver productos</a>
+    </div>
+    <img src="campera.png" alt="Nueva colección ROYALFIT" class="portada-imagen">
+  </header>
+
+  <main>
+    <section id="productos" class="seccion-productos">
+      <h2>Productos</h2>
+      <input type="text" id="buscador" placeholder="Buscar producto" aria-label="Buscar producto">
+      <select id="filtro-categoria" aria-label="Filtrar por categoría">
+        <option value="todas">Todas las categorías</option>
+        <option value="remeras">Remeras</option>
+        <option value="pantalones">Pantalones</option>
+        <option value="calzados">Calzados</option>
+      </select>
+      <p id="sin-resultados" aria-live="polite"></p>
+
+      <div class="productos">
+        <article class="producto" data-id="1" data-fotos="a6s_1.jpg">
+          <img class="imagen-producto" src="remera_azul.png" alt="Remera blanca">
+          <p class="precio" data-precio="10000">ARS $10.000</p>
+          <div class="separador"></div>
+          <h3 class="nombre-producto">Remera azul</h3>
+          <p class="categoria" data-categoria="remeras">Remeras</p>
+          <p class="descripcion-producto">Remera de algodón, corte clásico.</p>
+          <p class="stock" data-stock="10">Stock: 10 unidades</p>
+          <div class="acciones-producto" style="display:none">
+            <button type="button" class="ver-detalles">Ver detalles</button>
+            <button type="button" class="agregar-carrito">Agregar al carrito</button>
+            <button type="button" class="comprar-directo">Comprar directamente</button>
+          </div>
+        </article>
+
+        <article class="producto" data-id="2" data-fotos="shorts-negro.jpg">
+          <img class="imagen-producto" src="shorts-negro.jpg" alt="Shorts negro">
+          <p class="precio" data-precio="20000">ARS $20.000</p>
+          <div class="separador"></div>
+          <h3 class="nombre-producto">Shorts negro</h3>
+          <p class="categoria" data-categoria="pantalones">Pantalones</p>
+          <p class="descripcion-producto">Shorts negro de corte cómodo.</p>
+          <p class="stock" data-stock="10">Stock: 10 unidades</p>
+          <div class="acciones-producto" style="display:none">
+            <button type="button" class="ver-detalles">Ver detalles</button>
+            <button type="button" class="agregar-carrito">Agregar al carrito</button>
+            <button type="button" class="comprar-directo">Comprar directamente</button>
+          </div>
+        </article>
+
+        <article class="producto" data-id="3" data-fotos="zapatillas.jpg">
+          <img class="imagen-producto" src="zapatillas.jpg" alt="Zapatillas negras con detalles rojos">
+          <p class="precio" data-precio="30000">ARS $30.000</p>
+          <div class="separador"></div>
+          <h3 class="nombre-producto">Zapatillas</h3>
+          <p class="categoria" data-categoria="calzados">Calzados</p>
+          <p class="descripcion-producto">Zapatillas negras con detalles rojos.</p>
+          <p class="stock" data-stock="10">Stock: 10 unidades</p>
+          <div class="acciones-producto" style="display:none">
+            <button type="button" class="ver-detalles">Ver detalles</button>
+            <button type="button" class="agregar-carrito">Agregar al carrito</button>
+            <button type="button" class="comprar-directo">Comprar directamente</button>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Única ventana de detalles del producto -->
+  <div id="modal-producto" class="modal-producto" aria-hidden="true">
+    <div class="modal-contenido" role="dialog" aria-modal="true" aria-labelledby="modal-nombre">
+      <button type="button" id="cerrar-modal" class="cerrar-modal" aria-label="Cerrar ventana">×</button>
+      <div class="modal-galeria">
+        <img id="modal-imagen-principal" src="" alt="">
+        <div id="modal-miniaturas" class="modal-miniaturas"></div>
+      </div>
+      <div class="modal-informacion">
+        <p id="modal-categoria" class="modal-categoria"></p>
+        <h2 id="modal-nombre"></h2>
+        <p id="modal-descripcion"></p>
+        <p id="modal-precio" class="modal-precio"></p>
+        <p id="modal-stock" class="modal-stock"></p>
+        <div class="modal-acciones">
+          <button type="button" id="modal-agregar">Agregar al carrito</button>
+          <button type="button" id="modal-comprar">Comprar directamente</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Carrito y datos del cliente -->
+  <section id="carrito">
+    <h2>Carrito</h2>
+    <div id="lista-carrito"></div>
+    <p id="total-carrito">Total: $0</p>
+
+    <label for="nombre-cliente">Nombre</label>
+    <input type="text" id="nombre-cliente" placeholder="Tu nombre" autocomplete="name">
+    <label for="telefono-cliente">Teléfono</label>
+    <input type="tel" id="telefono-cliente" placeholder="Tu teléfono" autocomplete="tel">
+    <label for="direccion-cliente">Dirección</label>
+    <input type="text" id="direccion-cliente" placeholder="Tu dirección" autocomplete="street-address">
+
+    <button id="enviar-whatsapp" type="button">Enviar pedido por WhatsApp</button>
+    <div id="resumen-compra" class="resumen-compra"></div>
+    <button id="vaciar-carrito" type="button">Eliminar todo</button>
+    <button id="seguir-comprando" type="button">Seguir comprando</button>
+
+    <div class="tutorial">
+      <h3>¿Cómo enviar tu pedido?</h3>
+      <ol>
+        <li>Completá tu nombre, teléfono y dirección.</li>
+        <li>Tocá el botón verde <strong>"Enviar pedido por WhatsApp"</strong>.</li>
+        <li>Se abrirá WhatsApp con el resumen de tu compra ya escrito.</li>
+        <li>Revisá que los productos y el total sean correctos.</li>
+        <li>Tocá el botón de enviar para confirmarnos el pedido.</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer><p>© 2026 ROYALFIT</p></footer>
+  <script src="script.js"></script>
+</body>
+</html>
